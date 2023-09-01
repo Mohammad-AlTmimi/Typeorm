@@ -7,11 +7,11 @@ namespace TypeUser {
   }
 
   export interface Request extends express.Request {
-    body: {
+    body: ( {
       id: string,
       password: string,
       fullName: string
-    },
+    }),
     query: {
       page: string;
       pageSize: string;

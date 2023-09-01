@@ -1,12 +1,13 @@
 import express from 'express';
 import { User } from '../DB/entites/User.js';
+import { validateJob } from '../validate/User.js';
 import dataSource from '../DB/dataSource.js';
 var router = express.Router();
-router.post('/', async (req, res, next) => {
+router.post('/', validateJob, async (req, res) => {
     try {
         const user = new User();
-        user.fullName = req.body.fullName;
-        user.password = req.body.password;
+        user.fullName = "Mohammad AlTamimi";
+        user.password = "123456";
         dataSource.transaction(async (transactionManager) => {
             await transactionManager.save(user);
         }).then(() => {

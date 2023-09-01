@@ -5,11 +5,11 @@ import  dataSource  from '../DB/dataSource.js'
 import  TypeUser  from '../types/User.js'
 var router = express.Router();
 
-router.post('/' , async (req , res , next) =>{
+router.post('/' , validateJob , async (req : TypeUser.Request , res : TypeUser.Response) =>{
     try {
         const user = new User();
-        user.fullName = req.body.fullName;
-        user.password = req.body.password;
+        user.fullName = "Mohammad AlTamimi";
+        user.password = "123456";
         dataSource.transaction(async (transactionManager) => {
           await transactionManager.save(user);
         }).then(() => {
