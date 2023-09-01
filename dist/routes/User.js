@@ -5,8 +5,8 @@ var router = express.Router();
 router.post('/', async (req, res, next) => {
     try {
         const user = new User();
-        user.fullName = "Mohammad";
-        user.password = "123456";
+        user.fullName = req.body.fullName;
+        user.password = req.body.password;
         dataSource.transaction(async (transactionManager) => {
             await transactionManager.save(user);
         }).then(() => {
