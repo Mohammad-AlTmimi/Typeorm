@@ -6,7 +6,7 @@ const dataSource = new DataSource({
     port: 3306,
     username: 'root',
     password: '',
-    database: 'TypeormProject',
+    database: 'typeormproject',
     entities: [
         User
     ],
