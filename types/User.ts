@@ -8,9 +8,8 @@ namespace TypeUser {
 
   export interface Request extends express.Request {
     body: ( {
-      id: string,
-      password: string,
-      fullName: string
+      password: string | " ",
+      fullName: string | " "
     }),
     query: {
       page: string;

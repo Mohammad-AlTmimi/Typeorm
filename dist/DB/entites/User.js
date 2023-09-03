@@ -21,7 +21,7 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "id", void 0);
 __decorate([
-    Column({ length: 255, nullable: false }),
+    Column({ type: String }),
     __metadata("design:type", String)
 ], User.prototype, "fullName", void 0);
 __decorate([

@@ -3,21 +3,20 @@ import { User }  from '../DB/entites/User.js'
 import { validateJob } from '../validate/User.js'
 import  dataSource  from '../DB/dataSource.js'
 import  TypeUser  from '../types/User.js'
+import { stringify } from 'querystring';
 var router = express.Router();
 
-router.post('/' , validateJob , async (req : TypeUser.Request , res : TypeUser.Response) =>{
-    try {
-        const user = new User();
-        user.fullName = "Mohammad AlTamimi";
-        user.password = "123456";
-        dataSource.transaction(async (transactionManager) => {
-          await transactionManager.save(user);
-        }).then(() => {
-          res.send('User Created');
-        })
+router.post('/' , async (req : TypeUser.Request , res : TypeUser.Response) =>{
+  
+  try {
+        let user = new User();
+        user.fullName =  req.body.fullName;
+        user.password =  req.body.password;
+        await user.save();
+        res.status(200).send('User Updated')
       } catch (error) {
         console.error(error);
-        res.status(500).send("Something went wrong, " + error);
+        res.status(450).send("Something went wrong, " + error);
       }
 })
 
@@ -71,6 +70,7 @@ router.get('/search', async (req: any, res: any) => {
 router.put('/id:', async (req: TypeUser.Request, res: TypeUser.Response) => {
     const id = req.params.id;
     const task = await User.findOneBy({ id });
+    console.log('req.body.fullName :>> ', req.body.fullName);
     if (task) {
         task.password = req.body.password;
         task.fullName = req.body.fullName;

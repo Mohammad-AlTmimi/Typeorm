@@ -6,7 +6,7 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ length: 255, nullable: false })
+  @Column({ type: String })
   fullName: string;
 
   @BeforeInsert()
@@ -15,6 +15,6 @@ export class User extends BaseEntity {
       this.password = await bcrypt.hash(this.password, 10)
     }
   }
-  @Column({ nullable: false })
+  @Column({ nullable: false})
   password: string;
 }
